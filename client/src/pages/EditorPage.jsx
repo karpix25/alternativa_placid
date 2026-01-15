@@ -490,7 +490,7 @@ function EditorPage() {
                     </div>
                 </div>
 
-                <div className="w-[400px] bg-[var(--bg-main)] border-l border-[var(--border-color)] overflow-y-auto p-5 space-y-5 scrollbar-hide">
+                <div className="w-[320px] bg-[var(--bg-main)] border-l border-[var(--border-color)] overflow-y-auto p-4 space-y-4 scrollbar-hide">
                     <LayersPanel
                         elements={elements}
                         selectedId={selectedId}
