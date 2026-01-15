@@ -69,6 +69,7 @@ function EditorPage() {
     const [zoom, setZoom] = useState(0.3);
     const [showGrid, setShowGrid] = useState(true);
     const [lockDimensions, setLockDimensions] = useState(false);
+    const [transparentBackground, setTransparentBackground] = useState(false);
     const [exportSettings, setExportSettings] = useState(DEFAULT_EXPORT_SETTINGS);
 
     const fetchTemplates = async () => {
@@ -251,6 +252,7 @@ function EditorPage() {
             height: canvasSize.height,
             elements,
             exportSettings,
+            transparentBackground,
             updatedAt: new Date().toISOString(),
         };
 
@@ -289,6 +291,7 @@ function EditorPage() {
                 canvasSize: { width: data.width, height: data.height }
             });
             setExportSettings(data.exportSettings || DEFAULT_EXPORT_SETTINGS);
+            setTransparentBackground(data.transparentBackground || false);
             setCurrentTemplateId(data.id);
             setSelectedId(null);
             setSizePreset('custom');
@@ -443,6 +446,8 @@ function EditorPage() {
                 onToggleLock={() => setLockDimensions((prev) => !prev)}
                 showGrid={showGrid}
                 onToggleGrid={() => setShowGrid((prev) => !prev)}
+                transparentBackground={transparentBackground}
+                onToggleTransparent={() => setTransparentBackground((prev) => !prev)}
                 onSave={saveTemplate}
                 onUndo={undo}
                 onRedo={redo}
@@ -475,6 +480,7 @@ function EditorPage() {
                                 height={canvasSize.height}
                                 zoom={zoom}
                                 showGrid={showGrid}
+                                transparentBackground={transparentBackground}
                                 isSpacePressed={isSpacePressed}
                             />
                         </div>

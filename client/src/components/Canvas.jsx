@@ -13,10 +13,18 @@ export default function Canvas({
   height,
   zoom = 1,
   showGrid,
+  transparentBackground,
 }) {
   const interactionRef = useRef(null);
   // Map of element IDs to their DOM nodes
   const layerRefs = useRef(new Map());
+
+  const checkerboardPattern = `
+    linear-gradient(45deg, #ccc 25%, transparent 25%),
+    linear-gradient(-45deg, #ccc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ccc 75%),
+    linear-gradient(-45deg, transparent 75%, #ccc 75%)
+  `;
 
   const backgroundStyle = showGrid
     ? {
@@ -24,7 +32,14 @@ export default function Canvas({
       backgroundImage: gridPattern,
       backgroundSize: '40px 40px',
     }
-    : { backgroundColor: '#1f1f1f' };
+    : transparentBackground
+      ? {
+        backgroundColor: '#e0e0e0',
+        backgroundImage: checkerboardPattern,
+        backgroundSize: '20px 20px, 20px 20px, 20px 20px, 20px 20px',
+        backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
+      }
+      : { backgroundColor: '#1f1f1f' };
 
   // Helper to set refs
   const setLayerRef = useCallback((id, node) => {

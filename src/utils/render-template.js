@@ -56,7 +56,7 @@ function resolveDynamicColors(element, data) {
 const FONT_MAP = new Map(fontCatalog.map((font) => [font.value, font]));
 
 function renderTemplate(template, data = {}) {
-  const { width, height, elements = [] } = template;
+  const { width, height, elements = [], transparentBackground = false } = template;
   const fontLinks = buildFontLinks(elements);
 
   const elementHtml = elements
@@ -314,7 +314,7 @@ ${overflowWrapStyle}
             position: relative;
           width: ${width}px;
           height: ${height}px;
-          background: white;
+          background: ${transparentBackground ? 'transparent' : 'white'};
           overflow: hidden;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }

@@ -15,6 +15,8 @@ export default function DesignerTopBar({
   onToggleLock,
   showGrid,
   onToggleGrid,
+  transparentBackground,
+  onToggleTransparent,
   onSave,
   onUndo,
   onRedo,
@@ -118,6 +120,17 @@ export default function DesignerTopBar({
           >
             {showGrid ? <Grid3X3 size={14} /> : <Grid size={14} />}
             {showGrid ? t('topbar.showGrid').replace('Показать', 'Скрыть').replace('Show', 'Hide') : t('topbar.showGrid')}
+          </button>
+        </Tooltip>
+
+        <Tooltip text={transparentBackground ? "White Background" : "Transparent Background"}>
+          <button
+            type="button"
+            onClick={onToggleTransparent}
+            className={`flex items-center gap-2 border rounded-full px-4 py-2 text-sm font-medium transition-all ${transparentBackground ? 'bg-[var(--accent-color)] border-[var(--accent-color)] text-white' : 'bg-[var(--bg-main)] border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}
+          >
+            <Grid size={14} />
+            {transparentBackground ? 'Transparent' : 'White BG'}
           </button>
         </Tooltip>
 
